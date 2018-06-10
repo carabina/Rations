@@ -6,12 +6,12 @@
 //  Copyright © 2018 Erik Strottmann. All rights reserved.
 //
 
-public struct Rational<IntegerBase: BinaryInteger>: Hashable {
+public struct RationalNumber<IntegerBase: BinaryInteger>: Hashable {
     public private(set) var numerator: IntegerBase
     public private(set) var denominator: IntegerBase
 
     public init(_ numerator: IntegerBase, _ denominator: IntegerBase) {
-        precondition(denominator != 0, "Unable to initialize a Rational with zero denominator.")
+        precondition(denominator != 0, "Unable to initialize a RationalNumber with zero denominator.")
 
         let _gcd = gcd(numerator, denominator)
         let invertNumerator: IntegerBase = denominator < 0 ? -1 : 1
@@ -21,7 +21,9 @@ public struct Rational<IntegerBase: BinaryInteger>: Hashable {
     }
 }
 
-extension Rational: ExpressibleByIntegerLiteral {
+public typealias Rational = RationalNumber<Int>
+
+extension RationalNumber: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: IntegerBase.IntegerLiteralType) {
         self.init(IntegerBase.init(integerLiteral: value), 1)
     }

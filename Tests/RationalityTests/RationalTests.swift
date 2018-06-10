@@ -43,29 +43,29 @@ final class RationalTests: XCTestCase {
     }
 
     func testInitOfSignedAndUnsignedNumbers() {
-        let signed = Rational<Int64>(9, 18)
+        let signed = RationalNumber<Int64>(9, 18)
         XCTAssertEqual(signed.numerator, 1)
         XCTAssertEqual(signed.denominator, 2)
 
-        let unsigned = Rational<UInt64>(20, 10)
+        let unsigned = RationalNumber<UInt64>(20, 10)
         XCTAssertEqual(unsigned.numerator, 2)
         XCTAssertEqual(unsigned.denominator, 1)
     }
 
     func testInitWithIntegerLiteral() {
-        let positive: Rational<Int> = 440
+        let positive: Rational = 440
         XCTAssertEqual(positive.numerator, 440)
         XCTAssertEqual(positive.denominator, 1)
 
-        let negative: Rational<Int> = -20
+        let negative: Rational = -20
         XCTAssertEqual(negative.numerator, -20)
         XCTAssertEqual(negative.denominator, 1)
 
-        let zero: Rational<Int> = 0
+        let zero: Rational = 0
         XCTAssertEqual(zero.numerator, 0)
         XCTAssertEqual(zero.denominator, 1)
 
-        let unsigned: Rational<UInt> = 180
+        let unsigned: RationalNumber<UInt> = 180
         XCTAssertEqual(unsigned.numerator, 180)
         XCTAssertEqual(unsigned.denominator, 1)
     }
