@@ -11,10 +11,16 @@
 /// - Warning: The absolute value of `x` must be representable in the same type.
 ///   If this precondition is violated, this function will fail at runtime.
 ///
-/// - Parameters:
-///   - x: An integer.
+/// - Parameter x: An integer.
 func abs<T: BinaryInteger>(_ x: T) -> T {
     return T(x.magnitude)
+}
+
+/// Returns the absolute value of the given rational number.
+///
+/// - Parameter x: A rational number.
+public func abs<IntegerBase: BinaryInteger>(_ x: RationalNumber<IntegerBase>) -> RationalNumber<IntegerBase> {
+    return RationalNumber(abs(x.numerator), x.denominator)
 }
 
 /// Returns the greatest common divisor of the two given number.

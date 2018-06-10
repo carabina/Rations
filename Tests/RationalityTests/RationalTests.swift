@@ -70,9 +70,38 @@ final class RationalTests: XCTestCase {
         XCTAssertEqual(unsigned.denominator, 1)
     }
 
+    func testMagnitude() {
+        let signed = RationalNumber<Int>(-1, 2)
+        let signedMagnitude: RationalNumber<UInt> = signed.magnitude
+        XCTAssertEqual(signedMagnitude.numerator, 1)
+        XCTAssertEqual(signedMagnitude.denominator, 2)
+
+        let unsigned = RationalNumber<UInt>(3, 4)
+        let unsignedMagnitude: RationalNumber<UInt> = unsigned.magnitude
+        XCTAssertEqual(unsignedMagnitude.numerator, 3)
+        XCTAssertEqual(unsignedMagnitude.denominator, 4)
+        XCTAssertEqual(unsigned, unsignedMagnitude)
+    }
+
+    func testRationalNumberAbsoluteValue() {
+        let signed = RationalNumber<Int>(-1, 2)
+        let signedAbsoluteValue: RationalNumber<Int> = abs(signed)
+        XCTAssertEqual(signedAbsoluteValue.numerator, 1)
+        XCTAssertEqual(signedAbsoluteValue.denominator, 2)
+        XCTAssertNotEqual(signed, signedAbsoluteValue)
+
+        let unsigned = RationalNumber<UInt>(3, 4)
+        let unsignedAbsoluteValue: RationalNumber<UInt> = abs(unsigned)
+        XCTAssertEqual(unsignedAbsoluteValue.numerator, 3)
+        XCTAssertEqual(unsignedAbsoluteValue.denominator, 4)
+        XCTAssertEqual(unsigned, unsignedAbsoluteValue)
+    }
+
     static var allTests = [
         ("testInitReducesFractions", testInitReducesFractions),
         ("testInitNormalizesNegatives", testInitNormalizesNegatives),
         ("testInitWithIntegerLiteral", testInitWithIntegerLiteral),
+        ("testMagnitude", testMagnitude),
+        ("testRationalNumberAbsoluteValue", testRationalNumberAbsoluteValue),
     ]
 }

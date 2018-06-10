@@ -10,7 +10,7 @@ import XCTest
 @testable import Rationality
 
 final class UtilityTests: XCTestCase {
-    func testAbsoluteValue() {
+    func testBinaryIntegerAbsoluteValue() {
         XCTAssertEqual(abs(8 as Int8), 8)
         XCTAssertEqual(abs(-16 as Int16), 16)
         XCTAssertEqual(abs(32 as UInt32), 32)
@@ -41,7 +41,7 @@ final class UtilityTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testAbsoluteValue", testAbsoluteValue),
+        ("testBinaryIntegerAbsoluteValue", testBinaryIntegerAbsoluteValue),
         ("testGCDIsAlwaysPositive", testGCDIsAlwaysPositive),
         ("testGCDWithNoCommonDivisors", testGCDWithNoCommonDivisors),
         ("testGCDOfZero", testGCDOfZero),

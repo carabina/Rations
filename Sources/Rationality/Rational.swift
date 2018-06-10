@@ -28,3 +28,9 @@ extension RationalNumber: ExpressibleByIntegerLiteral {
         self.init(IntegerBase.init(integerLiteral: value), 1)
     }
 }
+
+public extension RationalNumber {
+    var magnitude: RationalNumber<IntegerBase.Magnitude> {
+        return RationalNumber<IntegerBase.Magnitude>(numerator.magnitude, denominator.magnitude)
+    }
+}
