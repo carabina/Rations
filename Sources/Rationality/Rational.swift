@@ -20,3 +20,9 @@ public struct Rational<IntegerBase: BinaryInteger>: Hashable {
         self.denominator = abs(denominator / _gcd)
     }
 }
+
+extension Rational: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: IntegerBase.IntegerLiteralType) {
+        self.init(IntegerBase.init(integerLiteral: value), 1)
+    }
+}

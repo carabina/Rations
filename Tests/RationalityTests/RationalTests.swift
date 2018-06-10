@@ -52,8 +52,27 @@ final class RationalTests: XCTestCase {
         XCTAssertEqual(unsigned.denominator, 1)
     }
 
+    func testInitWithIntegerLiteral() {
+        let positive: Rational<Int> = 440
+        XCTAssertEqual(positive.numerator, 440)
+        XCTAssertEqual(positive.denominator, 1)
+
+        let negative: Rational<Int> = -20
+        XCTAssertEqual(negative.numerator, -20)
+        XCTAssertEqual(negative.denominator, 1)
+
+        let zero: Rational<Int> = 0
+        XCTAssertEqual(zero.numerator, 0)
+        XCTAssertEqual(zero.denominator, 1)
+
+        let unsigned: Rational<UInt> = 180
+        XCTAssertEqual(unsigned.numerator, 180)
+        XCTAssertEqual(unsigned.denominator, 1)
+    }
+
     static var allTests = [
         ("testInitReducesFractions", testInitReducesFractions),
         ("testInitNormalizesNegatives", testInitNormalizesNegatives),
+        ("testInitWithIntegerLiteral", testInitWithIntegerLiteral),
     ]
 }
