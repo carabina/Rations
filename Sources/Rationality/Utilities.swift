@@ -23,7 +23,7 @@ public func abs<IntegerBase: BinaryInteger>(_ x: RationalNumber<IntegerBase>) ->
     return RationalNumber(abs(x.numerator), x.denominator)
 }
 
-/// Returns the greatest common divisor of the two given number.
+/// Returns the greatest common divisor of the two given numbers.
 ///
 /// The greatest common divisor of two integers is the largest nonnegative
 /// integer that evenly divides the two integers. For example:
@@ -51,4 +51,33 @@ func gcd<T: BinaryInteger>(_ lhs: T, _ rhs: T) -> T {
     }
 
     return a
+}
+
+/// Returns the lowest common denominator between the two given rational
+/// numbers, and the numerators for the given numbers to be expressed with the
+/// lowest common denominator.
+///
+/// For example:
+///
+///    let x = Rational(1, 4)
+///    let y = Rational(2, 3)
+///    let z = lcd(x, y)
+///    // (lhsNumerator: 3, rhsNumerator: 8, denominator: 12)
+///
+/// - Parameters:
+///   - lhs: A rational number.
+///   - rhs: Another rational number.
+///
+/// - Returns: A tuple containing three values: the numerators for the two given
+///   numbers to be expressed with the lowest common denominator, and the lowest
+///   common denominator itself.
+func lcd<IntegerBase: BinaryInteger>(_ lhs: RationalNumber<IntegerBase>, _ rhs: RationalNumber<IntegerBase>)
+        -> (lhsNumerator: IntegerBase, rhsNumerator: IntegerBase, denominator: IntegerBase) {
+    let gcd = Rationality.gcd(lhs.denominator, rhs.denominator)
+
+    let lhsNumerator = lhs.numerator * (rhs.denominator / gcd)
+    let rhsNumerator = rhs.numerator * (lhs.denominator / gcd)
+    let denominator = lhs.denominator / gcd * rhs.denominator
+
+    return (lhsNumerator: lhsNumerator, rhsNumerator: rhsNumerator, denominator: denominator)
 }

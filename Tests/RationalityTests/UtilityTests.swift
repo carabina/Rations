@@ -40,11 +40,45 @@ final class UtilityTests: XCTestCase {
         XCTAssertEqual(gcd(20 as UInt64, 10 as UInt64), 10)
     }
 
+    func testLCDWithNoCommonDivisors() {
+        let x = Rational(1, 4)
+        let y = Rational(2, 3)
+        let result = lcd(x, y)
+
+        XCTAssertEqual(result.lhsNumerator, 3)
+        XCTAssertEqual(result.rhsNumerator, 8)
+        XCTAssertEqual(result.denominator, 12)
+    }
+
+    func testLCDWithCommonDivisors() {
+        let x = Rational(1, 2)
+        let y = Rational(5, 4)
+        let result = lcd(x, y)
+
+        XCTAssertEqual(result.lhsNumerator, 2)
+        XCTAssertEqual(result.rhsNumerator, 5)
+        XCTAssertEqual(result.denominator, 4)
+    }
+
+    func testLCDDoesNotOverflowEarly() {
+        let n = Int8.max / 2
+        let x = RationalNumber<Int8>(1, n * 2)
+        let y = RationalNumber<Int8>(1, 2)
+        let result = lcd(x, y)
+
+        XCTAssertEqual(result.lhsNumerator, 1)
+        XCTAssertEqual(result.rhsNumerator, n)
+        XCTAssertEqual(result.denominator, n * 2)
+    }
+
     static var allTests = [
         ("testBinaryIntegerAbsoluteValue", testBinaryIntegerAbsoluteValue),
         ("testGCDIsAlwaysPositive", testGCDIsAlwaysPositive),
         ("testGCDWithNoCommonDivisors", testGCDWithNoCommonDivisors),
         ("testGCDOfZero", testGCDOfZero),
         ("testGCDOfSignedAndUnsignedNumbers", testGCDOfSignedAndUnsignedNumbers),
+        ("testLCDWithNoCommonDivisors", testLCDWithNoCommonDivisors),
+        ("testLCDWithCommonDivisors", testLCDWithCommonDivisors),
+        ("testLCDDoesNotOverflowEarly", testLCDDoesNotOverflowEarly),
     ]
 }

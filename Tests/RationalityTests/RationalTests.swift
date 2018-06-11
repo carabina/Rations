@@ -97,11 +97,41 @@ final class RationalTests: XCTestCase {
         XCTAssertEqual(unsigned, unsignedAbsoluteValue)
     }
 
+    func testAddition() {
+        let irreducible = Rational(1, 4) + Rational(2, 3)
+        XCTAssertEqual(irreducible.numerator, 11)
+        XCTAssertEqual(irreducible.denominator, 12)
+
+        let reducible = Rational(-5, 8) + Rational(1, 8)
+        XCTAssertEqual(reducible.numerator, -1)
+        XCTAssertEqual(reducible.denominator, 2)
+
+        let zero = Rational(1, 3) + Rational(-1, 3)
+        XCTAssertEqual(zero.numerator, 0)
+        XCTAssertEqual(zero.denominator, 1)
+    }
+
+    func testSubtraction() {
+        let irreducible = Rational(1, 4) - Rational(2, 3)
+        XCTAssertEqual(irreducible.numerator, -5)
+        XCTAssertEqual(irreducible.denominator, 12)
+
+        let reducible = Rational(-5, 8) - Rational(1, 8)
+        XCTAssertEqual(reducible.numerator, -3)
+        XCTAssertEqual(reducible.denominator, 4)
+
+        let zero = Rational(1, 3) - Rational(1, 3)
+        XCTAssertEqual(zero.numerator, 0)
+        XCTAssertEqual(zero.denominator, 1)
+    }
+
     static var allTests = [
         ("testInitReducesFractions", testInitReducesFractions),
         ("testInitNormalizesNegatives", testInitNormalizesNegatives),
         ("testInitWithIntegerLiteral", testInitWithIntegerLiteral),
         ("testMagnitude", testMagnitude),
         ("testRationalNumberAbsoluteValue", testRationalNumberAbsoluteValue),
+        ("testAddition", testAddition),
+        ("testSubtraction", testSubtraction),
     ]
 }
