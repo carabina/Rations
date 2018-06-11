@@ -70,6 +70,29 @@ final class RationalTests: XCTestCase {
         XCTAssertEqual(unsigned.denominator, 1)
     }
 
+    func testInitExactlyBinaryInteger() {
+        let smallerSourceSuccess = RationalNumber<Int64>(exactly: 2 as Int8)
+        XCTAssertNotNil(smallerSourceSuccess)
+        XCTAssertEqual(smallerSourceSuccess?.numerator, 2 as Int64)
+        XCTAssertEqual(smallerSourceSuccess?.denominator, 1)
+
+        let largerSourceSuccess = RationalNumber<Int8>(exactly: 4 as Int64)
+        XCTAssertNotNil(largerSourceSuccess)
+        XCTAssertEqual(largerSourceSuccess?.numerator, 4)
+        XCTAssertEqual(largerSourceSuccess?.denominator, 1)
+
+        let largerSourceFailure = RationalNumber<Int8>(exactly: 128 as Int64)
+        XCTAssertNil(largerSourceFailure)
+
+        let signedSourceSuccess = RationalNumber<UInt8>(exactly: 6 as Int8)
+        XCTAssertNotNil(signedSourceSuccess)
+        XCTAssertEqual(signedSourceSuccess?.numerator, 6 as UInt8)
+        XCTAssertEqual(signedSourceSuccess?.denominator, 1)
+
+        let signedSourceFailure = RationalNumber<UInt8>(exactly: -8 as Int8)
+        XCTAssertNil(signedSourceFailure)
+    }
+
     func testMagnitude() {
         let signed = RationalNumber<Int>(-1, 2)
         let signedMagnitude: RationalNumber<UInt> = signed.magnitude
@@ -129,6 +152,7 @@ final class RationalTests: XCTestCase {
         ("testInitReducesFractions", testInitReducesFractions),
         ("testInitNormalizesNegatives", testInitNormalizesNegatives),
         ("testInitWithIntegerLiteral", testInitWithIntegerLiteral),
+        ("testInitExactlyBinaryInteger", testInitExactlyBinaryInteger),
         ("testMagnitude", testMagnitude),
         ("testRationalNumberAbsoluteValue", testRationalNumberAbsoluteValue),
         ("testAddition", testAddition),

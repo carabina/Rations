@@ -30,6 +30,14 @@ extension RationalNumber: ExpressibleByIntegerLiteral {
 }
 
 public extension RationalNumber {
+    init?<T: BinaryInteger>(exactly source: T) {
+        if let numerator = IntegerBase.init(exactly: source) {
+            self.init(numerator, 1)
+        } else {
+            return nil
+        }
+    }
+
     var magnitude: RationalNumber<IntegerBase.Magnitude> {
         return RationalNumber<IntegerBase.Magnitude>(numerator.magnitude, denominator.magnitude)
     }
