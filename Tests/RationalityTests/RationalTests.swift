@@ -148,6 +148,46 @@ final class RationalTests: XCTestCase {
         XCTAssertEqual(zero.denominator, 1)
     }
 
+    func testMultiplication() {
+        let irreducible = Rational(1, 4) * Rational(5, 3)
+        XCTAssertEqual(irreducible.numerator, 5)
+        XCTAssertEqual(irreducible.denominator, 12)
+
+        let reducible = Rational(-5, 8) * Rational(8, 1)
+        XCTAssertEqual(reducible.numerator, -5)
+        XCTAssertEqual(reducible.denominator, 1)
+
+        let zero = Rational(1, 3) * Rational(0, 1)
+        XCTAssertEqual(zero.numerator, 0)
+        XCTAssertEqual(zero.denominator, 1)
+    }
+
+    func testMultiplicationDoesNotOverflowEarly() {
+        let result = Rational(1, Int.max) * Rational(Int.max, 2)
+        XCTAssertEqual(result.numerator, 1)
+        XCTAssertEqual(result.denominator, 2)
+    }
+
+    func testDivision() {
+        let irreducible = Rational(1, 4) / Rational(2, 3)
+        XCTAssertEqual(irreducible.numerator, 3)
+        XCTAssertEqual(irreducible.denominator, 8)
+
+        let reducible = Rational(-5, 8) / Rational(1, 8)
+        XCTAssertEqual(reducible.numerator, -5)
+        XCTAssertEqual(reducible.denominator, 1)
+
+        let zero = Rational(0, 3) / Rational(1, 3)
+        XCTAssertEqual(zero.numerator, 0)
+        XCTAssertEqual(zero.denominator, 1)
+    }
+
+    func testDivisionDoesNotOverflowEarly() {
+        let result = Rational(1, Int.max) / Rational(2, Int.max)
+        XCTAssertEqual(result.numerator, 1)
+        XCTAssertEqual(result.denominator, 2)
+    }
+
     static var allTests = [
         ("testInitReducesFractions", testInitReducesFractions),
         ("testInitNormalizesNegatives", testInitNormalizesNegatives),
@@ -157,5 +197,9 @@ final class RationalTests: XCTestCase {
         ("testRationalNumberAbsoluteValue", testRationalNumberAbsoluteValue),
         ("testAddition", testAddition),
         ("testSubtraction", testSubtraction),
+        ("testMultiplication", testMultiplication),
+        ("testMultiplicationDoesNotOverflowEarly", testMultiplicationDoesNotOverflowEarly),
+        ("testDivision", testDivision),
+        ("testDivisionDoesNotOverflowEarly", testDivisionDoesNotOverflowEarly),
     ]
 }
