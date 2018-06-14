@@ -205,6 +205,7 @@ final class RationalTests: XCTestCase {
     static var allTests = [
         ("testInitReducesFractions", testInitReducesFractions),
         ("testInitNormalizesNegatives", testInitNormalizesNegatives),
+        ("testInitOfSignedAndUnsignedNumbers", testInitOfSignedAndUnsignedNumbers),
         ("testLessThan", testLessThan),
         ("testInitWithIntegerLiteral", testInitWithIntegerLiteral),
         ("testInitExactlyBinaryInteger", testInitExactlyBinaryInteger),
