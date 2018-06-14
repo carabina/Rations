@@ -100,3 +100,9 @@ public extension RationalNumber {
         lhs = lhs * rhs
     }
 }
+
+extension RationalNumber: SignedNumeric where IntegerBase: SignedNumeric {
+    public mutating func negate() {
+        numerator.negate()
+    }
+}
