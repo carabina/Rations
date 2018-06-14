@@ -52,6 +52,20 @@ final class RationalTests: XCTestCase {
         XCTAssertEqual(unsigned.denominator, 1)
     }
 
+    func testLessThan() {
+        // Same denominator
+        XCTAssertLessThan(Rational(1, 3), Rational(2, 3))
+
+        // Different denominator
+        XCTAssertLessThan(Rational(3, 4), Rational(4, 5))
+
+        // Different sign
+        XCTAssertLessThan(Rational(-9, 10), Rational(1, 10))
+
+        // Zero
+        XCTAssertLessThan(Rational(0, 1), Rational(1, 100))
+    }
+
     func testInitWithIntegerLiteral() {
         let positive: Rational = 440
         XCTAssertEqual(positive.numerator, 440)
@@ -191,6 +205,7 @@ final class RationalTests: XCTestCase {
     static var allTests = [
         ("testInitReducesFractions", testInitReducesFractions),
         ("testInitNormalizesNegatives", testInitNormalizesNegatives),
+        ("testLessThan", testLessThan),
         ("testInitWithIntegerLiteral", testInitWithIntegerLiteral),
         ("testInitExactlyBinaryInteger", testInitExactlyBinaryInteger),
         ("testMagnitude", testMagnitude),

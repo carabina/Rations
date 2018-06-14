@@ -23,6 +23,13 @@ public struct RationalNumber<IntegerBase: BinaryInteger>: Hashable {
 
 public typealias Rational = RationalNumber<Int>
 
+extension RationalNumber: Comparable {
+    public static func < (lhs: RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) -> Bool {
+        let (lhsNumerator, rhsNumerator, _) = lcd(lhs, rhs)
+        return lhsNumerator < rhsNumerator
+    }
+}
+
 extension RationalNumber: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: IntegerBase.IntegerLiteralType) {
         self.init(IntegerBase.init(integerLiteral: value), 1)
