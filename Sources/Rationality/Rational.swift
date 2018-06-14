@@ -36,8 +36,8 @@ extension RationalNumber: ExpressibleByIntegerLiteral {
     }
 }
 
-public extension RationalNumber {
-    init?<T: BinaryInteger>(exactly source: T) {
+extension RationalNumber: Numeric {
+    public init?<T: BinaryInteger>(exactly source: T) {
         if let numerator = IntegerBase.init(exactly: source) {
             self.init(numerator, 1)
         } else {
@@ -45,29 +45,32 @@ public extension RationalNumber {
         }
     }
 
-    var magnitude: RationalNumber<IntegerBase.Magnitude> {
+    public var magnitude: RationalNumber<IntegerBase.Magnitude> {
         return RationalNumber<IntegerBase.Magnitude>(numerator.magnitude, denominator.magnitude)
     }
 
-    static func + (lhs: RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) -> RationalNumber<IntegerBase> {
+    public static func + (lhs: RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>)
+            -> RationalNumber<IntegerBase> {
         let (lhsNumerator, rhsNumerator, denominator) = lcd(lhs, rhs)
         return RationalNumber(lhsNumerator + rhsNumerator, denominator)
     }
 
-    static func += (lhs: inout RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) {
+    public static func += (lhs: inout RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) {
         lhs = lhs + rhs
     }
 
-    static func - (lhs: RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) -> RationalNumber<IntegerBase> {
+    public static func - (lhs: RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>)
+            -> RationalNumber<IntegerBase> {
         let (lhsNumerator, rhsNumerator, denominator) = lcd(lhs, rhs)
         return RationalNumber(lhsNumerator - rhsNumerator, denominator)
     }
 
-    static func -= (lhs: inout RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) {
+    public static func -= (lhs: inout RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) {
         lhs = lhs - rhs
     }
 
-    static func * (lhs: RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) -> RationalNumber<IntegerBase> {
+    public static func * (lhs: RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>)
+            -> RationalNumber<IntegerBase> {
         let gcd1 = gcd(lhs.numerator, rhs.denominator)
         let gcd2 = gcd(lhs.denominator, rhs.numerator)
 
@@ -76,7 +79,7 @@ public extension RationalNumber {
         return RationalNumber(numerator, denominator)
     }
 
-    static func *= (lhs: inout RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) {
+    public static func *= (lhs: inout RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) {
         lhs = lhs * rhs
     }
 }
