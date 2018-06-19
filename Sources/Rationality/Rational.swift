@@ -13,11 +13,13 @@ public struct RationalNumber<IntegerBase: BinaryInteger>: Hashable {
     public init(_ numerator: IntegerBase, _ denominator: IntegerBase) {
         precondition(denominator != 0, "Unable to initialize a RationalNumber with zero denominator.")
 
+        // Reduce the fraction by dividing by the GCD.
+        // Normalize the sign by multiplying by the denominator’s signum.
         let gcd = Rationality.gcd(numerator, denominator)
-        let invertNumerator: IntegerBase = denominator < 0 ? -1 : 1
+        let signum = denominator.signum()
 
-        self.numerator = invertNumerator * (numerator / gcd)
-        self.denominator = abs(denominator / gcd)
+        self.numerator = signum * (numerator / gcd)
+        self.denominator = signum * (denominator / gcd)
     }
 }
 
@@ -139,5 +141,26 @@ public extension RationalNumber where IntegerBase: FixedWidthInteger {
     /// greater than zero. This value is always `1 / IntegerBase.max`.
     static var leastNonzeroMagnitude: RationalNumber<IntegerBase> {
         return RationalNumber(1, IntegerBase.max)
+    }
+}
+
+public extension RationalNumber {
+    /// A Boolean value indicating whether this type is a signed rational number
+    /// type.
+    ///
+    /// *Signed* rational number types can represent both positive and negative
+    /// values. *Unsigned* rational number types can represent only nonnegative
+    /// values.
+    static var isSigned: Bool {
+        return IntegerBase.isSigned
+    }
+
+    /// Returns `-1` if this value is negative and `1` if it's positive;
+    /// otherwise, `0`.
+    ///
+    /// - Returns: The sign of this number, expressed as an integer of the same
+    ///   type.
+    func signum() -> IntegerBase {
+        return numerator.signum()
     }
 }

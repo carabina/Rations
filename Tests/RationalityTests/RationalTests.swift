@@ -257,6 +257,28 @@ final class RationalTests: XCTestCase {
         XCTAssertEqual(unsigned.denominator, UInt16.max)
     }
 
+    func testIsSigned() {
+        XCTAssertTrue(RationalNumber<Int8>.isSigned)
+        XCTAssertFalse(RationalNumber<UInt16>.isSigned)
+    }
+
+    func testSignum() {
+        let signedPositive = RationalNumber<Int8>(4, 2)
+        XCTAssertEqual(signedPositive.signum(), 1)
+
+        let signedNegative = RationalNumber<Int16>(-1, 6)
+        XCTAssertEqual(signedNegative.signum(), -1)
+
+        let signedZero = RationalNumber<Int32>(0, 5)
+        XCTAssertEqual(signedZero.signum(), 0)
+
+        let unsignedPositive = RationalNumber<UInt64>(3, 7)
+        XCTAssertEqual(unsignedPositive.signum(), 1)
+
+        let unsignedZero = RationalNumber<UInt8>(0, 255)
+        XCTAssertEqual(unsignedZero.signum(), 0)
+    }
+
     static var allTests = [
         ("testInitReducesFractions", testInitReducesFractions),
         ("testInitNormalizesNegatives", testInitNormalizesNegatives),
@@ -277,5 +299,7 @@ final class RationalTests: XCTestCase {
         ("testMax", testMax),
         ("testMin", testMin),
         ("testLeastNonzeroMagnitude", testLeastNonzeroMagnitude),
+        ("testIsSigned", testIsSigned),
+        ("testSignum", testSignum),
     ]
 }
