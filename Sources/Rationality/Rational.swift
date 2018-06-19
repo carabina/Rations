@@ -112,3 +112,32 @@ extension RationalNumber: CustomStringConvertible {
         return numerator.description + "/" + denominator.description
     }
 }
+
+public extension RationalNumber where IntegerBase: FixedWidthInteger {
+    /// The maximum value representable by this type.
+    ///
+    /// This value is always `IntegerBase.max / 1`.
+    static var max: RationalNumber<IntegerBase> {
+        return RationalNumber(IntegerBase.max, 1)
+    }
+
+    /// The minimum value representable by this type.
+    ///
+    /// For unsigned rational number types, this value is `IntegerBase.min / 1`.
+    /// For signed rational number types, this value is `-IntegerBase.max / 1`.
+    static var min: RationalNumber<IntegerBase> {
+        if IntegerBase.min.magnitude > IntegerBase.max.magnitude {
+            return RationalNumber(0 - IntegerBase.max, 1)
+        } else {
+            return RationalNumber(IntegerBase.min, 1)
+        }
+    }
+
+    /// The minimum positive value representable by this type.
+    ///
+    /// This value compares less than or equal to all positive numbers, but
+    /// greater than zero. This value is always `1 / IntegerBase.max`.
+    static var leastNonzeroMagnitude: RationalNumber<IntegerBase> {
+        return RationalNumber(1, IntegerBase.max)
+    }
+}

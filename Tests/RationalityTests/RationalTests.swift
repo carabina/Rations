@@ -227,6 +227,36 @@ final class RationalTests: XCTestCase {
         XCTAssertEqual(zero.description, "0/1")
     }
 
+    func testMax() {
+        let signed = RationalNumber<Int8>.max
+        XCTAssertEqual(signed.numerator, Int8.max)
+        XCTAssertEqual(signed.denominator, 1)
+
+        let unsigned = RationalNumber<UInt16>.max
+        XCTAssertEqual(unsigned.numerator, UInt16.max)
+        XCTAssertEqual(unsigned.denominator, 1)
+    }
+
+    func testMin() {
+        let signed = RationalNumber<Int8>.min
+        XCTAssertEqual(signed.numerator, -Int8.max)
+        XCTAssertEqual(signed.denominator, 1)
+
+        let unsigned = RationalNumber<UInt16>.min
+        XCTAssertEqual(unsigned.numerator, 0)
+        XCTAssertEqual(unsigned.denominator, 1)
+    }
+
+    func testLeastNonzeroMagnitude() {
+        let signed = RationalNumber<Int8>.leastNonzeroMagnitude
+        XCTAssertEqual(signed.numerator, 1)
+        XCTAssertEqual(signed.denominator, Int8.max)
+
+        let unsigned = RationalNumber<UInt16>.leastNonzeroMagnitude
+        XCTAssertEqual(unsigned.numerator, 1)
+        XCTAssertEqual(unsigned.denominator, UInt16.max)
+    }
+
     static var allTests = [
         ("testInitReducesFractions", testInitReducesFractions),
         ("testInitNormalizesNegatives", testInitNormalizesNegatives),
@@ -244,5 +274,8 @@ final class RationalTests: XCTestCase {
         ("testDivisionDoesNotOverflowEarly", testDivisionDoesNotOverflowEarly),
         ("testNegation", testNegation),
         ("testDescription", testDescription),
+        ("testMax", testMax),
+        ("testMin", testMin),
+        ("testLeastNonzeroMagnitude", testLeastNonzeroMagnitude),
     ]
 }
