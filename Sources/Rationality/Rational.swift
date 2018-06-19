@@ -50,9 +50,9 @@ extension RationalNumber: Numeric {
     }
 
     public static func + (lhs: RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>)
-            -> RationalNumber<IntegerBase> {
-        let (lhsNumerator, rhsNumerator, denominator) = lcd(lhs, rhs)
-        return RationalNumber(lhsNumerator + rhsNumerator, denominator)
+        -> RationalNumber<IntegerBase> {
+            let (lhsNumerator, rhsNumerator, denominator) = lcd(lhs, rhs)
+            return RationalNumber(lhsNumerator + rhsNumerator, denominator)
     }
 
     public static func += (lhs: inout RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) {
@@ -60,9 +60,9 @@ extension RationalNumber: Numeric {
     }
 
     public static func - (lhs: RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>)
-            -> RationalNumber<IntegerBase> {
-        let (lhsNumerator, rhsNumerator, denominator) = lcd(lhs, rhs)
-        return RationalNumber(lhsNumerator - rhsNumerator, denominator)
+        -> RationalNumber<IntegerBase> {
+            let (lhsNumerator, rhsNumerator, denominator) = lcd(lhs, rhs)
+            return RationalNumber(lhsNumerator - rhsNumerator, denominator)
     }
 
     public static func -= (lhs: inout RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) {
@@ -70,13 +70,13 @@ extension RationalNumber: Numeric {
     }
 
     public static func * (lhs: RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>)
-            -> RationalNumber<IntegerBase> {
-        let gcd1 = gcd(lhs.numerator, rhs.denominator)
-        let gcd2 = gcd(lhs.denominator, rhs.numerator)
+        -> RationalNumber<IntegerBase> {
+            let gcd1 = gcd(lhs.numerator, rhs.denominator)
+            let gcd2 = gcd(lhs.denominator, rhs.numerator)
 
-        let numerator = (lhs.numerator / gcd1) * (rhs.numerator / gcd2)
-        let denominator = (lhs.denominator / gcd2) * (rhs.denominator / gcd1)
-        return RationalNumber(numerator, denominator)
+            let numerator = (lhs.numerator / gcd1) * (rhs.numerator / gcd2)
+            let denominator = (lhs.denominator / gcd2) * (rhs.denominator / gcd1)
+            return RationalNumber(numerator, denominator)
     }
 
     public static func *= (lhs: inout RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) {

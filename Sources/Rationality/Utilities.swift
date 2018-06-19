@@ -62,7 +62,7 @@ func gcd<T: BinaryInteger>(_ lhs: T, _ rhs: T) -> T {
 ///    let x = Rational(1, 4)
 ///    let y = Rational(2, 3)
 ///    let z = lcd(x, y)
-///    // (lhsNumerator: 3, rhsNumerator: 8, denominator: 12)
+///    // z = (lhsNumerator: 3, rhsNumerator: 8, denominator: 12)
 ///
 /// - Parameters:
 ///   - lhs: A rational number.
@@ -72,12 +72,12 @@ func gcd<T: BinaryInteger>(_ lhs: T, _ rhs: T) -> T {
 ///   numbers to be expressed with the lowest common denominator, and the lowest
 ///   common denominator itself.
 func lcd<IntegerBase: BinaryInteger>(_ lhs: RationalNumber<IntegerBase>, _ rhs: RationalNumber<IntegerBase>)
-        -> (lhsNumerator: IntegerBase, rhsNumerator: IntegerBase, denominator: IntegerBase) {
-    let gcd = Rationality.gcd(lhs.denominator, rhs.denominator)
+    -> (lhsNumerator: IntegerBase, rhsNumerator: IntegerBase, denominator: IntegerBase) {
+        let gcd = Rationality.gcd(lhs.denominator, rhs.denominator)
 
-    let lhsNumerator = lhs.numerator * (rhs.denominator / gcd)
-    let rhsNumerator = rhs.numerator * (lhs.denominator / gcd)
-    let denominator = lhs.denominator / gcd * rhs.denominator
+        let lhsNumerator = lhs.numerator * (rhs.denominator / gcd)
+        let rhsNumerator = rhs.numerator * (lhs.denominator / gcd)
+        let denominator = lhs.denominator / gcd * rhs.denominator
 
-    return (lhsNumerator: lhsNumerator, rhsNumerator: rhsNumerator, denominator: denominator)
+        return (lhsNumerator: lhsNumerator, rhsNumerator: rhsNumerator, denominator: denominator)
 }
