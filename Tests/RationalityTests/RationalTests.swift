@@ -216,6 +216,17 @@ final class RationalTests: XCTestCase {
         XCTAssertEqual(zero.denominator, 1)
     }
 
+    func testDescription() {
+        let positive = Rational(303, 33)
+        XCTAssertEqual(positive.description, "101/11")
+
+        let negative = Rational(-1009, 10_007)
+        XCTAssertEqual(negative.description, "-1009/10007")
+
+        let zero = Rational(0, 2)
+        XCTAssertEqual(zero.description, "0/1")
+    }
+
     static var allTests = [
         ("testInitReducesFractions", testInitReducesFractions),
         ("testInitNormalizesNegatives", testInitNormalizesNegatives),
@@ -232,5 +243,6 @@ final class RationalTests: XCTestCase {
         ("testDivision", testDivision),
         ("testDivisionDoesNotOverflowEarly", testDivisionDoesNotOverflowEarly),
         ("testNegation", testNegation),
+        ("testDescription", testDescription),
     ]
 }

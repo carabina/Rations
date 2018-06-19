@@ -106,3 +106,9 @@ extension RationalNumber: SignedNumeric where IntegerBase: SignedNumeric {
         numerator.negate()
     }
 }
+
+extension RationalNumber: CustomStringConvertible {
+    public var description: String {
+        return numerator.description + "/" + denominator.description
+    }
+}
