@@ -10,7 +10,7 @@ public struct RationalNumber<IntegerBase: BinaryInteger>: Hashable {
     public private(set) var numerator: IntegerBase
     public private(set) var denominator: IntegerBase
 
-    public init(_ numerator: IntegerBase, _ denominator: IntegerBase) {
+    public init(_ numerator: IntegerBase, _ denominator: IntegerBase = 1) {
         precondition(denominator != 0, "Unable to initialize a RationalNumber with zero denominator.")
 
         // Reduce the fraction by dividing by the GCD.

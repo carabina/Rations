@@ -26,6 +26,10 @@ final class RationalTests: XCTestCase {
         let zero = Rational(0, 100)
         XCTAssertEqual(zero.numerator, 0)
         XCTAssertEqual(zero.denominator, 1)
+
+        let integer = Rational(8)
+        XCTAssertEqual(integer.numerator, 8)
+        XCTAssertEqual(integer.denominator, 1)
     }
 
     func testInitNormalizesNegatives() {
