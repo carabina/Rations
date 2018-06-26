@@ -279,6 +279,30 @@ final class RationalTests: XCTestCase {
         XCTAssertEqual(unsignedZero.signum(), 0)
     }
 
+    func testIntegerValue() {
+        let integer: Rational = 5
+        XCTAssertEqual(integer.integerValue, 5)
+
+        let fraction: Rational = -3 / 2
+        XCTAssertNil(fraction.integerValue)
+    }
+
+    func testIntegerApproximation() {
+        let integer: Rational = 5
+        XCTAssertEqual(integer.integerApproximation, 5)
+
+        let fraction: Rational = -3 / 2
+        XCTAssertEqual(fraction.integerApproximation, -1)
+    }
+
+    func testDoubleApproximation() {
+        let integer: Rational = 5
+        XCTAssertEqual(integer.doubleApproximation, 5)
+
+        let fraction: Rational = -3 / 2
+        XCTAssertEqual(fraction.doubleApproximation, -1.5)
+    }
+
     static var allTests = [
         ("testInitReducesFractions", testInitReducesFractions),
         ("testInitNormalizesNegatives", testInitNormalizesNegatives),
@@ -301,5 +325,8 @@ final class RationalTests: XCTestCase {
         ("testLeastNonzeroMagnitude", testLeastNonzeroMagnitude),
         ("testIsSigned", testIsSigned),
         ("testSignum", testSignum),
+        ("testIntegerValue", testIntegerValue),
+        ("testIntegerApproximation", testIntegerApproximation),
+        ("testDoubleApproximation", testDoubleApproximation),
     ]
 }

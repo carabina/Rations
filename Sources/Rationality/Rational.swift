@@ -164,3 +164,44 @@ public extension RationalNumber {
         return numerator.signum()
     }
 }
+
+public extension RationalNumber {
+    /// The integer value of this rational number, if it can be represented
+    /// without rounding.
+    ///
+    /// If the rational number does not exactly represent an integer, this
+    /// value will be `nil`.
+    ///
+    /// For example:
+    ///
+    ///     let x = Rational(5, 1).exactIntegerValue
+    ///     // x == 5
+    ///
+    ///     let y = Rational(-3, 2).exactIntegerValue
+    ///     // y == nil
+    var integerValue: IntegerBase? {
+        guard denominator == 1 else { return nil }
+        return numerator
+    }
+
+    /// The approximate integer value of this rational number, rounding toward
+    /// zero.
+    ///
+    /// Any fractional part of the rational number is omitted.
+    ///
+    /// For example:
+    ///
+    ///     let x = Rational(5, 1).integerValue
+    ///     // x == 5
+    ///
+    ///     let y = Rational(-3, 2).integerValue
+    ///     // y == -1
+    var integerApproximation: IntegerBase {
+        return numerator / denominator
+    }
+
+    /// The closest approximate `Double` value to this rational number.
+    var doubleApproximation: Double {
+        return Double(Int64(numerator)) / Double(Int64(denominator))
+    }
+}
