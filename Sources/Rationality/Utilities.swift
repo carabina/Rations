@@ -9,7 +9,8 @@
 /// Returns the absolute value of the given number.
 ///
 /// - Warning: The absolute value of `x` must be representable in the same type.
-///   If this precondition is violated, this function will fail at runtime.
+///   If this precondition is violated, this function will trigger a runtime
+///   error.
 ///
 /// - Parameter x: An integer.
 func abs<T: BinaryInteger>(_ x: T) -> T {
@@ -35,7 +36,8 @@ public func abs<IntegerBase: BinaryInteger>(_ x: RationalNumber<IntegerBase>) ->
 ///
 /// - Warning: The two given numbers must not both be zero, and the absolute
 ///   value of both numbers must be representable in the given type. If either
-///   of these preconditions is violated, this function will fail at runtime.
+///   of these preconditions is violated, this function will trigger a runtime
+///   error.
 ///
 /// - Parameters:
 ///   - lhs: An integer.

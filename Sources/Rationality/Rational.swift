@@ -6,10 +6,97 @@
 //  Copyright © 2018 Erik Strottmann. All rights reserved.
 //
 
+/// A rational number value type.
+///
+/// A rational number is any number representable as a fraction of the form
+/// `p / q`, where the numerator `p` and the denominator `q` are both integers,
+/// and the denominator `q` is nonzero.
+///
+/// Note that integers are themselves rational numbers with denominators of `1`.
+/// Irrational numbers like the mathematical constants pi and _e_ cannot be
+/// exactly represented by `RationalNumber`.
+///
+/// ## Reduced fraction and normalized sign
+///
+/// A `RationalNumber` value is always stored in reduced fraction form: the
+/// greatest integer that evenly divides its numerator and denominator is always
+/// `1`. Additionally, the sign of a `RationalNumber` value is always
+/// normalized: the denominator is never negative, and the sign of the rational
+/// number is determined by the sign of the numerator.
+///
+/// For example:
+///
+///     let x = RationalNumber<Int>(2, -4)
+///     // x.numerator == -1
+///     // x.denominator == 2
+///
+/// ## IntegerBase
+///
+/// `RationalNumber` is a generic type with a type parameter `IntegerBase`
+/// that must conform to `BinaryInteger`. The `numerator` and `denominator` of
+/// a `RationalNumber<IntegerBase>` value are both of type `IntegerBase`.
+///
+/// If `IntegerBase` is an unsigned type, then `RationalNumber<IntegerBase>` is
+/// also an unsigned type. If `IntegerBase` is a signed type, then
+/// `RationalNumber<IntegerBase>` is also a signed type.
+///
+/// - Warning: If `IntegerBase` is a fixed-width integer type, then
+///   `RationalNumber<IntegerBase>` cannot represent values with absolute value
+///   greater than `IntegerBase.max` or less than `1 / IntegerBase.max`, even
+///   if those values are later reduced.
+///
+/// For example, `Int8.max`, `127`, is a valid value for both the numerator and
+/// the denominator of a `RationalNumber<Int8>` value,
+/// but `Int8.min`, `-128`, will trigger a runtime error if used as either the
+/// numerator or the denominator, even if it is later reduced:
+///
+///     let y = RationalNumber(Int8.max)
+///     // y.numerator == 127
+///     // y.denominator == 1
+///
+///     let z = RationalNumber(Int8.min, Int8.min)
+///     // Fatal error: Not enough bits to represent a signed value
 public struct RationalNumber<IntegerBase: BinaryInteger>: Hashable {
     public private(set) var numerator: IntegerBase
     public private(set) var denominator: IntegerBase
 
+    /// Creates a new instance with the given numerator and denominator, in
+    /// reduced fraction form and with the sign normalized.
+    ///
+    /// The denominator defaults to `1`, and can be omitted.
+    ///
+    /// A `RationalNumber` value is always stored in reduced fraction form: the
+    /// greatest integer that evenly divides its numerator and denominator is
+    /// always `1`. Additionally, the sign of a `RationalNumber` value is always
+    /// normalized: the denominator is never negative, and the sign of the
+    /// rational number is determined by the sign of the numerator.
+    ///
+    /// For example:
+    ///
+    ///     let x = RationalNumber<Int>(2, -4)
+    ///     // x.numerator == -1
+    ///     // x.denominator == 2
+    ///
+    /// - Warning: If `IntegerBase` is a fixed-width integer type, then
+    ///   `RationalNumber<IntegerBase>` cannot represent values with absolute value
+    ///   greater than `IntegerBase.max` or less than `1 / IntegerBase.max`, even
+    ///   if those values are later reduced.
+    ///
+    /// For example, `Int8.max`, `127`, is a valid value for both the numerator and
+    /// the denominator of a `RationalNumber<Int8>` value,
+    /// but `Int8.min`, `-128`, will trigger a runtime error if used as either the
+    /// numerator or the denominator, even if it is later reduced:
+    ///
+    ///     let y = RationalNumber(Int8.max)
+    ///     // y.numerator == 127
+    ///     // y.denominator == 1
+    ///
+    ///     let z = RationalNumber(Int8.min, Int8.min)
+    ///     // Fatal error: Not enough bits to represent a signed value
+    ///
+    /// - Parameters:
+    ///   - numerator: The integer to use as the numerator.
+    ///   - denominator: The integer to use as the denominator.
     public init(_ numerator: IntegerBase, _ denominator: IntegerBase = 1) {
         precondition(denominator != 0, "Unable to initialize a RationalNumber with zero denominator.")
 
