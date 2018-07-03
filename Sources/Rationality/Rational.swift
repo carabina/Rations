@@ -296,3 +296,10 @@ public extension RationalNumber {
         return Double(Int64(numerator)) / Double(Int64(denominator))
     }
 }
+
+/// Returns the absolute value of the given rational number.
+///
+/// - Parameter x: A rational number.
+public func abs<IntegerBase: BinaryInteger>(_ x: RationalNumber<IntegerBase>) -> RationalNumber<IntegerBase> {
+    return RationalNumber(abs(x.numerator), x.denominator)
+}

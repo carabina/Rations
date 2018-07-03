@@ -17,13 +17,6 @@ func abs<T: BinaryInteger>(_ x: T) -> T {
     return T(x.magnitude)
 }
 
-/// Returns the absolute value of the given rational number.
-///
-/// - Parameter x: A rational number.
-public func abs<IntegerBase: BinaryInteger>(_ x: RationalNumber<IntegerBase>) -> RationalNumber<IntegerBase> {
-    return RationalNumber(abs(x.numerator), x.denominator)
-}
-
 /// Returns the greatest common divisor of the two given numbers.
 ///
 /// The greatest common divisor of two integers is the largest nonnegative
