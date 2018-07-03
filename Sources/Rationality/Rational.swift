@@ -21,8 +21,8 @@
 /// A `RationalNumber` value is always stored in reduced fraction form: the
 /// greatest integer that evenly divides its numerator and denominator is always
 /// `1`. Additionally, the sign of a `RationalNumber` value is always
-/// normalized: the denominator is never negative, and the sign of the rational
-/// number is determined by the sign of the numerator.
+/// normalized: the denominator is always positive, and the sign of the
+/// numerator is always equal to the sign of the rational number itself.
 ///
 /// For example:
 ///
@@ -57,7 +57,14 @@
 ///     let z = RationalNumber(Int8.min, Int8.min)
 ///     // Fatal error: Not enough bits to represent a signed value
 public struct RationalNumber<IntegerBase: BinaryInteger>: Hashable {
+    /// The numerator of this rational number.
+    ///
+    /// The sign of this value is always equal to the sign of the rational
+    /// number itself.
     public private(set) var numerator: IntegerBase
+    /// The denominator of this rational number.
+    ///
+    /// This value is always positive.
     public private(set) var denominator: IntegerBase
 
     /// Creates a new instance with the given numerator and denominator, in
@@ -110,6 +117,7 @@ public struct RationalNumber<IntegerBase: BinaryInteger>: Hashable {
     }
 }
 
+/// A rational number value type, with numerator and denominator of type `Int`.
 public typealias Rational = RationalNumber<Int>
 
 extension RationalNumber: Comparable {
