@@ -109,6 +109,24 @@ final class RationalTests: XCTestCase {
 
         let signedSourceFailure = RationalNumber<UInt8>(exactly: -8 as Int8)
         XCTAssertNil(signedSourceFailure)
+
+        let signedMaximumSuccess = RationalNumber<Int8>(exactly: Int8.max)
+        XCTAssertNotNil(signedMaximumSuccess)
+        XCTAssertEqual(signedMaximumSuccess?.numerator, 127)
+        XCTAssertEqual(signedMaximumSuccess?.denominator, 1)
+
+        let signedMinimumFailure = RationalNumber<Int8>(exactly: Int8.min)
+        XCTAssertNil(signedMinimumFailure)
+
+        let unsignedMaximumSuccess = RationalNumber<UInt8>(exactly: UInt8.max)
+        XCTAssertNotNil(unsignedMaximumSuccess)
+        XCTAssertEqual(unsignedMaximumSuccess?.numerator, 255)
+        XCTAssertEqual(unsignedMaximumSuccess?.denominator, 1)
+
+        let unsignedMinimumSuccess = RationalNumber<Int8>(exactly: UInt8.min)
+        XCTAssertNotNil(unsignedMinimumSuccess)
+        XCTAssertEqual(unsignedMinimumSuccess?.numerator, 0)
+        XCTAssertEqual(unsignedMinimumSuccess?.denominator, 1)
     }
 
     func testMagnitude() {

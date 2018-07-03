@@ -127,11 +127,15 @@ extension RationalNumber: ExpressibleByIntegerLiteral {
 
 extension RationalNumber: Numeric {
     public init?<T: BinaryInteger>(exactly source: T) {
-        if let numerator = IntegerBase.init(exactly: source) {
+        if let numerator = IntegerBase.init(exactly: source), RationalNumber<IntegerBase>.canRepresent(numerator) {
             self.init(numerator, 1)
         } else {
             return nil
         }
+    }
+
+    private static func canRepresent(_ value: IntegerBase) -> Bool {
+        return IntegerBase(exactly: value.magnitude) != nil
     }
 
     public var magnitude: RationalNumber<IntegerBase.Magnitude> {
