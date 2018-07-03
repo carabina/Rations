@@ -128,12 +128,38 @@ extension RationalNumber: Comparable {
 }
 
 extension RationalNumber: ExpressibleByIntegerLiteral {
+    /// Creates an instance initialized to the specified integer value.
+    ///
+    /// Do not call this initializer directly. Instead, initialize a variable or
+    /// constant using an integer literal. For example:
+    ///
+    ///     let x: RationalNumber<Int> = 23
+    ///
+    /// In this example, the assignment to the `x` constant calls this integer
+    /// literal initializer behind the scenes.
+    ///
+    /// - Parameter value: The value to create.
     public init(integerLiteral value: IntegerBase.IntegerLiteralType) {
         self.init(IntegerBase.init(integerLiteral: value), 1)
     }
 }
 
 extension RationalNumber: Numeric {
+    /// Creates a new instance from the given integer, if it can be represented
+    /// exactly.
+    ///
+    /// If the value passed as `source` is not representable exactly, the result
+    /// is `nil`. In the following example, the constant `x` is successfully
+    /// created from a value of `100`, while the attempt to initialize the
+    /// constant `y` from `1_000` fails because the `RationalNumber<Int8>` type
+    /// can represent `127` at maximum:
+    ///
+    ///     let x = RationalNumber<Int8>(exactly: 100)
+    ///     // x == Optional(RationalNumber<Int8>(100))
+    ///     let y = RationalNumber<Int8>(exactly: 1_000)
+    ///     // y == nil
+    ///
+    /// - Parameter source: A value to convert to this type.
     public init?<T: BinaryInteger>(exactly source: T) {
         if let numerator = IntegerBase.init(exactly: source), RationalNumber<IntegerBase>.canRepresent(numerator) {
             self.init(numerator, 1)
@@ -146,6 +172,21 @@ extension RationalNumber: Numeric {
         return IntegerBase(exactly: value.magnitude) != nil
     }
 
+    /// The magnitude of this value.
+    ///
+    /// For any numeric value `x`, `x.magnitude` is the absolute value of `x`.
+    /// You can use the `magnitude` property in operations that are simpler to
+    /// implement in terms of unsigned values, such as printing the value of an
+    /// integer, which is just printing a '-' character in front of an absolute
+    /// value.
+    ///
+    ///     let x = -200
+    ///     // x.magnitude == 200
+    ///
+    /// The global `abs(_:)` function provides more familiar syntax when you need
+    /// to find an absolute value. In addition, because `abs(_:)` always returns
+    /// a value of the same type, even in a generic context, using the function
+    /// instead of the `magnitude` property is encouraged.
     public var magnitude: RationalNumber<IntegerBase.Magnitude> {
         return RationalNumber<IntegerBase.Magnitude>(numerator.magnitude, denominator.magnitude)
     }
@@ -203,12 +244,35 @@ public extension RationalNumber {
 }
 
 extension RationalNumber: SignedNumeric where IntegerBase: SignedNumeric {
+    /// Replaces this value with its additive inverse.
+    ///
+    /// The following example uses the `negate()` method to negate the value of
+    /// a rational number `x`:
+    ///
+    ///     var x: RationalNumber<Int> = 21
+    ///     x.negate()
+    ///     // x == -21
     public mutating func negate() {
         numerator.negate()
     }
 }
 
 extension RationalNumber: CustomStringConvertible {
+    /// A textual representation of this instance.
+    ///
+    /// Calling this property directly is discouraged. Instead, convert an
+    /// instance of any type to a string by using the `String(describing:)`
+    /// initializer. This initializer works with any type, and uses the custom
+    /// `description` property for types that conform to
+    /// `CustomStringConvertible`:
+    ///
+    ///     let r = RationalNumber<Int>(3, 4)
+    ///     let s = String(describing: r)
+    ///     print(s)
+    ///     // Prints "3/4"
+    ///
+    /// The conversion of `r` to a string in the assignment to `s` uses the
+    /// `RationalNumber` type’s `description` property.
     public var description: String {
         return numerator.description + "/" + denominator.description
     }
