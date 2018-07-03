@@ -121,6 +121,8 @@ public struct RationalNumber<IntegerBase: BinaryInteger>: Hashable {
 public typealias Rational = RationalNumber<Int>
 
 extension RationalNumber: Comparable {
+    // MARK: Comparable conformance
+
     public static func < (lhs: RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) -> Bool {
         let (lhsNumerator, rhsNumerator, _) = lcd(lhs, rhs)
         return lhsNumerator < rhsNumerator
@@ -128,6 +130,8 @@ extension RationalNumber: Comparable {
 }
 
 extension RationalNumber: ExpressibleByIntegerLiteral {
+    // MARK: ExpressibleByIntegerLiteral conformance
+
     /// Creates an instance initialized to the specified integer value.
     ///
     /// Do not call this initializer directly. Instead, initialize a variable or
@@ -145,6 +149,8 @@ extension RationalNumber: ExpressibleByIntegerLiteral {
 }
 
 extension RationalNumber: Numeric {
+    // MARK: Numeric conformance
+
     /// Creates a new instance from the given integer, if it can be represented
     /// exactly.
     ///
@@ -227,6 +233,8 @@ extension RationalNumber: Numeric {
 }
 
 public extension RationalNumber {
+    // MARK: Division
+
     static func / (lhs: RationalNumber<IntegerBase>, rhs: RationalNumber<IntegerBase>) -> RationalNumber<IntegerBase> {
         precondition(rhs.numerator != 0, "Unable to divide a RationalNumber by zero.")
 
@@ -244,6 +252,8 @@ public extension RationalNumber {
 }
 
 extension RationalNumber: SignedNumeric where IntegerBase: SignedNumeric {
+    // MARK: SignedNumeric conditional conformance
+
     /// Replaces this value with its additive inverse.
     ///
     /// The following example uses the `negate()` method to negate the value of
@@ -258,6 +268,8 @@ extension RationalNumber: SignedNumeric where IntegerBase: SignedNumeric {
 }
 
 extension RationalNumber: CustomStringConvertible {
+    // MARK: CustomStringConvertible conformance
+
     /// A textual representation of this instance.
     ///
     /// Calling this property directly is discouraged. Instead, convert an
@@ -279,6 +291,8 @@ extension RationalNumber: CustomStringConvertible {
 }
 
 public extension RationalNumber where IntegerBase: FixedWidthInteger {
+    // MARK: Maximum and minimum values
+
     /// The maximum value representable by this type.
     ///
     /// This value is always `IntegerBase.max / 1`.
@@ -308,6 +322,8 @@ public extension RationalNumber where IntegerBase: FixedWidthInteger {
 }
 
 public extension RationalNumber {
+    // MARK: Sign
+
     /// A Boolean value indicating whether this type is a signed rational number
     /// type.
     ///
@@ -329,6 +345,8 @@ public extension RationalNumber {
 }
 
 public extension RationalNumber {
+    // MARK: Integer and double conversions
+
     /// The integer value of this rational number, if it can be represented
     /// without rounding.
     ///
@@ -368,6 +386,8 @@ public extension RationalNumber {
         return Double(Int64(numerator)) / Double(Int64(denominator))
     }
 }
+
+// MARK: Global functions
 
 /// Returns the absolute value of the given rational number.
 ///
