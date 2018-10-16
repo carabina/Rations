@@ -1,5 +1,5 @@
 //
-//  RationalTests.swift
+//  RationalNumberTests.swift
 //  RationalityTests
 //
 //  Created by Erik Strottmann on 6/9/18.
@@ -9,7 +9,7 @@
 import XCTest
 import Rationality
 
-final class RationalTests: XCTestCase {
+final class RationalNumberTests: XCTestCase {
     func testInitReducesFractions() {
         let irreducible = Rational(1, 2)
         XCTAssertEqual(irreducible.numerator, 1)

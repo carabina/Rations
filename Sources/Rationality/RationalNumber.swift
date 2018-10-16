@@ -1,5 +1,5 @@
 //
-//  Rational.swift
+//  RationalNumber.swift
 //  Rationality
 //
 //  Created by Erik Strottmann on 6/9/18.
@@ -387,7 +387,7 @@ public extension RationalNumber {
     }
 }
 
-// MARK: Global functions
+// MARK: Free functions
 
 /// Returns the absolute value of the given rational number.
 ///
