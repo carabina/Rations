@@ -1,6 +1,6 @@
 //
 //  RationalNumber.swift
-//  Rationality
+//  Rations
 //
 //  Created by Erik Strottmann on 6/9/18.
 //  Copyright © 2018 Erik Strottmann. All rights reserved.
@@ -109,7 +109,7 @@ public struct RationalNumber<IntegerBase: BinaryInteger>: Hashable {
 
         // Reduce the fraction by dividing by the GCD.
         // Normalize the sign by multiplying by the denominator’s signum.
-        let gcd = Rationality.gcd(numerator, denominator)
+        let gcd = Rations.gcd(numerator, denominator)
         let signum = denominator.signum()
 
         self.numerator = signum * (numerator / gcd)

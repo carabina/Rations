@@ -1,6 +1,6 @@
 import XCTest
-import RationalityTests
+import RationsTests
 
 var tests = [XCTestCaseEntry]()
-tests += RationalityTests.allTests()
+tests += RationsTests.allTests()
 XCTMain(tests)

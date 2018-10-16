@@ -3,18 +3,18 @@
 import PackageDescription
 
 let package = Package(
-    name: "Rationality",
+    name: "Rations",
     products: [
         .library(
-            name: "Rationality",
-            targets: ["Rationality"]),
+            name: "Rations",
+            targets: ["Rations"]),
     ],
     targets: [
         .target(
-            name: "Rationality",
+            name: "Rations",
             dependencies: []),
         .testTarget(
-            name: "RationalityTests",
-            dependencies: ["Rationality"]),
+            name: "RationsTests",
+            dependencies: ["Rations"]),
     ]
 )

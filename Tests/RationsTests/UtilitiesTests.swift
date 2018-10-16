@@ -1,13 +1,13 @@
 //
 //  UtilityTests.swift
-//  RationalityTests
+//  RationsTests
 //
 //  Created by Erik Strottmann on 6/9/18.
 //  Copyright © 2018 Erik Strottmann. All rights reserved.
 //
 
 import XCTest
-@testable import Rationality
+@testable import Rations
 
 final class UtilityTests: XCTestCase {
     func testBinaryIntegerAbsoluteValue() {

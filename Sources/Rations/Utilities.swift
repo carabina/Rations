@@ -1,6 +1,6 @@
 //
 //  Utilities.swift
-//  Rationality
+//  Rations
 //
 //  Created by Erik Strottmann on 6/9/18.
 //  Copyright © 2018 Erik Strottmann. All rights reserved.
@@ -68,7 +68,7 @@ func gcd<T: BinaryInteger>(_ lhs: T, _ rhs: T) -> T {
 ///   common denominator itself.
 func lcd<IntegerBase: BinaryInteger>(_ lhs: RationalNumber<IntegerBase>, _ rhs: RationalNumber<IntegerBase>)
     -> (lhsNumerator: IntegerBase, rhsNumerator: IntegerBase, denominator: IntegerBase) {
-        let gcd = Rationality.gcd(lhs.denominator, rhs.denominator)
+        let gcd = Rations.gcd(lhs.denominator, rhs.denominator)
 
         let lhsNumerator = lhs.numerator * (rhs.denominator / gcd)
         let rhsNumerator = rhs.numerator * (lhs.denominator / gcd)

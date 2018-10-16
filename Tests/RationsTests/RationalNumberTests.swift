@@ -1,13 +1,13 @@
 //
 //  RationalNumberTests.swift
-//  RationalityTests
+//  RationsTests
 //
 //  Created by Erik Strottmann on 6/9/18.
 //  Copyright © 2018 Erik Strottmann. All rights reserved.
 //
 
 import XCTest
-import Rationality
+import Rations
 
 final class RationalNumberTests: XCTestCase {
     func testInitReducesFractions() {
