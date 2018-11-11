@@ -1,6 +1,6 @@
 import XCTest
 
-#if !os(macOS)
+#if !os(iOS) && !os(macOS) && !os(tvOS) && !os(watchOS)
 public func allTests() -> [XCTestCaseEntry] {
     return [
         testCase(RationalNumberTests.allTests),
