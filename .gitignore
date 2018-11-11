@@ -1,4 +1,11 @@
+# macOS
 .DS_Store
-/.build
-/Packages
-/*.xcodeproj
+
+# Xcode
+xcuserdata/
+
+# Swift Package Manager
+.build/
+
+# Carthage
+Carthage/Build/
