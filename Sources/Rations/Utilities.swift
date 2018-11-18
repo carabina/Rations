@@ -66,8 +66,8 @@ func gcd<T: BinaryInteger>(_ lhs: T, _ rhs: T) -> T {
 /// - Returns: A tuple containing three values: the numerators for the two given
 ///   numbers to be expressed with the lowest common denominator, and the lowest
 ///   common denominator itself.
-func lcd<IntegerBase: BinaryInteger>(_ lhs: RationalNumber<IntegerBase>, _ rhs: RationalNumber<IntegerBase>)
-    -> (lhsNumerator: IntegerBase, rhsNumerator: IntegerBase, denominator: IntegerBase) {
+func lcd<Base: BinaryInteger>(_ lhs: RationalNumber<Base>, _ rhs: RationalNumber<Base>)
+    -> (lhsNumerator: Base, rhsNumerator: Base, denominator: Base) {
         let gcd = Rations.gcd(lhs.denominator, rhs.denominator)
 
         let lhsNumerator = lhs.numerator * (rhs.denominator / gcd)
