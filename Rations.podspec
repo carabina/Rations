@@ -3,14 +3,12 @@ Pod::Spec.new do |s|
   s.version          = '0.1.0'
   s.summary          = 'A rational number type for Swift.'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+Rations is a rational number value type for Swift. It allows you to
+perform calculations on fractional numbers without the loss of precision
+caused by floating-point arithmetic. Rational numbers are useful for
+representing currency and for other applications where exact results,
+not approximations, are desired.
                        DESC
 
   s.homepage         = 'https://github.com/erikstrottmann/Rations'

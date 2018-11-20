@@ -2,6 +2,19 @@
 
 > A rational number type for Swift.
 
+Rations is a rational number value type for Swift. It allows you to perform calculations on fractional numbers without the loss of precision caused by floating-point arithmetic. Rational numbers are useful for representing currency and for other applications where exact results, not approximations, are desired.
+
+For example, the fraction `1/3` can be exactly represented as a rational number, but not as a floating point number:
+
+```swift
+let x: Rational = 1 / 3
+// x == 1/3
+let y: Double = 1 / 3
+// y == 0.3333333333333333
+```
+
+Rations does have a performance penalty compared to Swift’s native floating point types. You might not want to use Rations in performance-sensitive areas. Each operation that returns a rational number involves calculating the greatest common divisor of the numerator and denominator using the Euclidean algorithm.
+
 ## Install
 
 ### Swift Package Manager
