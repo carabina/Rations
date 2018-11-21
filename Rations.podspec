@@ -17,6 +17,7 @@ not approximations, are desired.
   s.source           = { git: 'https://github.com/Erik Strottmann/Rations.git', tag: s.version.to_s }
   s.social_media_url = 'https://twitter.com/erikstrottmann'
 
+  s.swift_version = '4.2'
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.10'
   s.tvos.deployment_target = '9.0'

@@ -17,6 +17,8 @@ Rations does have a performance penalty compared to Swift’s native floating po
 
 ## Install
 
+Rations requires Swift 4.2 or higher. It supports iOS, macOS, tvOS, watchOS, and Linux.
+
 ### Swift Package Manager
 
 Add the following line to your `Package.swift`:
