@@ -1,5 +1,10 @@
 # Rations
 
+[![Build Status](https://img.shields.io/travis/erikstrottmann/Rations.svg)](https://travis-ci.org/erikstrottmann/Rations)
+[![Version](https://img.shields.io/cocoapods/v/Rations.svg?label=version)](https://github.com/erikstrottmann/Rations/releases)
+[![Supported Package Managers](https://img.shields.io/badge/supports-SwiftPM%20%7C%20CocoaPods%20%7C%20Carthage-orange.svg)](#install)
+[![Supported Platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS%20%7C%20Linux-lightgrey.svg)](#install)
+
 > A rational number type for Swift.
 
 Rations is a rational number value type for Swift. It allows you to perform calculations on fractional numbers without the loss of precision caused by floating-point arithmetic. Rational numbers are useful for representing currency and for other applications where exact results, not approximations, are desired.
