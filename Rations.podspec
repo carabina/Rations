@@ -14,7 +14,7 @@ not approximations, are desired.
   s.homepage         = 'https://github.com/erikstrottmann/Rations'
   s.license          = { type: 'MIT', file: 'LICENSE.txt' }
   s.author           = { 'Erik Strottmann' => 'hello@erikstrottmann.com' }
-  s.source           = { git: 'https://github.com/Erik Strottmann/Rations.git', tag: s.version.to_s }
+  s.source           = { git: 'https://github.com/erikstrottmann/Rations.git', tag: s.version.to_s }
   s.social_media_url = 'https://twitter.com/erikstrottmann'
 
   s.swift_version = '4.2'
