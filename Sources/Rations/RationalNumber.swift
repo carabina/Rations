@@ -384,7 +384,7 @@ public extension RationalNumber {
 
     /// The closest approximate `Double` value to this rational number.
     var doubleApproximation: Double {
-        return Double(Int64(numerator)) / Double(Int64(denominator))
+        return Double(numerator) / Double(denominator)
     }
 }
 
